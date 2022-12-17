@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jerwin Lalap</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/dark%20logo1.png">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- poppins font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- css -->
+    <style>
+        :root {
+            --quillGray: #D9D9D8;
+            --tuatara: #2D2D28;
+            --clarCreek: #8C8364;
+            --auChico: #8D6258;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            color: var(--tuatara);
+        }
+
+        /* general elements */
+        button {
+            appearance: none;
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+        .content-section {
+            padding: 75px 0;
+        }
+
+        .section-title {
+            text-transform: uppercase;
+            font-size: 42px;
+            font-weight: 800;
+        }
+
+        .inner-container {
+            padding-top: 24px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            height: 200vh;
+        }
+
+        /* header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(217, 217, 216, 0.7);
+            z-index: 999;
+
+            transition: 0.5s ease;
+        }
+
+        header.is-scroll {
+            backdrop-filter: blur(10px);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--auChico);
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        header .container #logo {
+            /* font-size: 40px;
+            font-weight: 900;
+            letter-spacing: 10px;
+            color: inherit; */
+            width: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+
+        header .container nav ul {
+            list-style: none;
+            margin: auto 0;
+            display: flex;
+        }
+
+        header .container nav ul li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        header .container nav ul li::after {
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            content: '';
+            height: 3px;
+            width: 0;
+            background-color: var(--auChico);
+
+            transition: 0.4s ease;
+        }
+
+        header .container nav ul li:hover::after {
+            width: 100%;
+        }
+
+        header .container nav ul li a {
+            font-size: 20px;
+            font-weight: 500;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: inherit;
+
+            transition: 0.4s ease;
+        }
+
+        header .container nav ul li a:hover {
+            color: var(--auChico);
+        }
+
+        /* home */
+        main #home {
+            height: 100vh;
+            background-image: url(https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/bg-landing-page.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+        }
+
+        main #home .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        main #home .container .info {
+            margin: auto 0;
+            text-align: center;
+        }
+
+        main #home .container .info .name {
+            font-size: 54px;
+            font-weight: 800;
+        }
+
+        main #home .container .info .position {
+            font-size: 26px;
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--auChico);
+        }
+
+        main #home .container .info .brief-desc {
+            font-size: 16px;
+            margin-bottom: 15px;
+            max-width: 900px;
+        }
+
+        main #home .container .info .see-more {
+            border: 2px solid var(--auChico);
+            padding: 5px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            overflow: hidden;
+
+            transition: 0.4s ease;
+        }
+
+        main #home .container .info .see-more:hover {
+            background-color: var(--auChico);
+            color: var(--quillGray);
+        }
+
+        main #home .container .info .see-more:hover::before {
+            width: 100%;
+        }
+
+        /* education */
+        main #education .container .university-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        main #education .container .university-container .university {
+            width: 300px;
+            margin: 0 5px;
+            text-align: center;
+            cursor: pointer;
+
+            transition: 0.4s ease-in-out;
+        }
+
+        main #education .container .university-container .university:hover {
+            transform: translateY(-20px);
+        }
+
+        main #education .container .university-container .university .univ-logo {
+            width: 80%;
+            margin-bottom: 10px;
+        }
+
+        main #education .container .university-container .university .univ-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        /* projects */
+
+        main #projects {
+            background-color: var(--quillGray);
+        }
+
+        main #projects .container .project-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main #projects .container .project-container .slider {
+            max-width: 800px;
+            width: 80%;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 2px 2px 10px #000;
+
+            position: relative;
+        }
+
+        main #projects .container .project-container .slider .slides {
+            width: 500%;
+            height: 500px;
+            display: flex;
+        }
+
+        main #projects .container .project-container .slider .slides input {
+            display: none;
+        }
+
+        main #projects .container .project-container .slider .slides .slide {
+            width: 20%;
+            transition: 2s;
+        }
+
+        main #projects .container .project-container .slider .slides .slide .project {
+            width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            cursor: pointer;
+
+            position: relative;
+            transition: 0.4s ease;
+        }
+
+        main #projects .container .project-container .slider .slides .slide .project .proj-details {
+            opacity: 0;
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 0 15px;
+
+            align-items: center;
+            justify-content: center;
+
+            transition: 0.4s ease;
+        }
+
+        main #projects .container .project-container .slider .slides .slide .project:hover .proj-details {
+            opacity: 1;
+        }
+
+        main #projects .container .project-container .slider .slides .slide .project .proj-details .detail-container .proj-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--quillGray);
+        }
+        
+        main #projects .container .project-container .slider .slides .slide .project .proj-details .detail-container .lang-used {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--quillGray);
+        }
+
+        main #projects .container .project-container .slider .slides .slide .project .proj-details .detail-container .link {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--quillGray);
+        }
+
+        /* manual slide navigation */
+        main #projects .container .project-container .slider .navigation-manual {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            background-color: rgba(217, 217, 216, 0.4);
+            padding: 20px 0;
+        }
+
+        main #projects .container .project-container .slider .navigation-manual .manual-btn {
+            border: 2px solid var(--tuatara);
+            padding: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+
+            transition: 0.5s;
+        }
+
+        main #projects .container .project-container .slider .navigation-manual .manual-btn:not(:last-child) {
+            margin-right: 40px;
+        }
+
+        main #projects .container .project-container .slider .navigation-manual .manual-btn:hover {
+            background-color: var(--tuatara);
+        }
+
+        #radio1:checked~.first {
+            margin-left: 0;
+        }
+
+        #radio2:checked~.first {
+            margin-left: -20%;
+        }
+
+        #radio3:checked~.first {
+            margin-left: -40%;
+        }
+
+        #radio4:checked~.first {
+            margin-left: -60%;
+        }
+
+        main #projects .container .project-container .slider .slides .navigation-auto {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            background-color: rgba(217, 217, 216, 0.4);
+            padding: 20px 0;
+        }
+
+        main #projects .container .project-container .slider .slides .navigation-auto div {
+            border: 2px solid var(--tuatara);
+            padding: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+
+            transition: 0.5s;
+        }
+
+        main #projects .container .project-container .slider .slides .navigation-auto div:not(:last-child) {
+            margin-right: 40px;
+        }
+
+        #radio1:checked~.navigation-auto .auto-btn1 {
+            background-color: var(--tuatara);
+        }
+
+        #radio2:checked~.navigation-auto .auto-btn2 {
+            background-color: var(--tuatara);
+        }
+
+        #radio3:checked~.navigation-auto .auto-btn3 {
+            background-color: var(--tuatara);
+        }
+
+        #radio4:checked~.navigation-auto .auto-btn4 {
+            background-color: var(--tuatara);
+        }
+
+        /* skills */
+
+        /* contact */
+        main #contact {
+            background-color: var(--quillGray);
+        }
+
+        /* footer */
+    </style>
+
+    <!-- javascript -->
+    <script>
+        window.addEventListener('load', () => {
+            const header = document.querySelector('header');
+
+            // todo's on load
+            if (window.pageYOffset > 135)
+                header.classList.add('is-scroll');
+            else
+                header.classList.remove('is-scroll');
+
+
+            // blurred header
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 135)
+                    header.classList.add('is-scroll');
+                else
+                    header.classList.remove('is-scroll');
+
+            });
+
+            // automatic project slider
+            // NOTE: naka-off po muna yung automatic slider hehe
+            // uncomment these codes to turn on the automatic slider
+            // let counter = 1;
+            // setInterval(function() {
+            //     document.getElementById('radio' + counter++).checked = true;
+            //     if (counter > 4)
+            //         counter = 1;
+            // }, 5000);
+
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <!-- header -->
+    <header>
+        <div class="container">
+            <img id="logo"
+                src="https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/dark%20logo1.png"
+                alt="logo-img">
+            <nav>
+                <ul class="hide-mobile">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- content -->
+    <main>
+        <!-- home -->
+        <section id="home">
+            <div class="container">
+                <div class="info">
+                    <div class="name" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">JERWIN
+                    </div>
+
+                    <div class="position" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">An
+                        aspiring Full Stack Web Developer</div>
+
+                    <div class="brief-desc" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                        Hi! I'm Jerwin Lalap, a 3rd year BS Information Technology student from Polytechnic University
+                        of the Philippines (Sto. Tomas Campus). I love programming and I want to be a Full Stack
+                        Developer one day. Yun lamang po, magandang gabi at maraming salamat!</div>
+
+                    <a href="#education"><button class="see-more" data-aos="fade-left" data-aos-anchor="#example-anchor"
+                            data-aos-offset="500" data-aos-duration="500">SEE MORE</button></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- education -->
+        <section id="education" class="content-section">
+            <div class="container">
+                <div class="section-title" data-aos="zoom-in-up">Education</div>
+                <div class="university-container inner-container">
+                    <div class="university">
+                        <img src="https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/univ%20logos/sct-logo.png"
+                            alt="univ-logo" class="univ-logo" data-aos="flip-up" data-aos-offset="250"
+                            data-aos-easing="ease-in-sine" data-aos-duration="700">
+                        <div class="univ-title">Siena College Tigaon</div>
+                        <div class="school-year">Elementary (2008 - 2014)</div>
+                    </div>
+
+                    <div class="university">
+                        <img src="https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/univ%20logos/sta_old.png"
+                            alt="univ-logo" class="univ-logo" data-aos="flip-down" data-aos-offset="250"
+                            data-aos-easing="ease-in-sine" data-aos-duration="700">
+                        <div class="univ-title">St. Thomas Academy</div>
+                        <div class="school-year">JHS (2014 - 2018)</div>
+                    </div>
+
+                    <div class="university">
+                        <img src="https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/univ%20logos/sta_new.png"
+                            alt="univ-logo" class="univ-logo" data-aos="flip-up" data-aos-offset="250"
+                            data-aos-easing="ease-in-sine" data-aos-duration="700">
+                        <div class="univ-title">St. Thomas Academy</div>
+                        <div class="school-year">SHS (2018 - 2020)</div>
+                    </div>
+
+                    <div class="university">
+                        <img src="https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/univ%20logos/pup.png"
+                            alt="univ-logo" class="univ-logo" data-aos="flip-down" data-aos-offset="250"
+                            data-aos-easing="ease-in-sine" data-aos-duration="700">
+                        <div class="univ-title">Polytechnic University of the Philippines</div>
+                        <div class="school-year">College (2020 - present)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- projects -->
+        <section id="projects" class="content-section">
+            <div class="container">
+                <div class="section-title" data-aos="zoom-in-up">Projects</div>
+                <div class="project-container inner-container" data-aos="fade-right" data-aos-duration="2000">
+                    <!-- image slider start -->
+                    <div class="slider">
+                        <div class="slides">
+                            <!-- radio button start -->
+                            <input type="radio" name="radio-btn" id="radio1" checked="true">
+                            <input type="radio" name="radio-btn" id="radio2">
+                            <input type="radio" name="radio-btn" id="radio3">
+                            <input type="radio" name="radio-btn" id="radio4">
+                            <!-- radio button end -->
+
+                            <!-- slide images start -->
+                            <div class="slide first">
+                                <div class="project" style="background-image: url(https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/projs/act3.jpeg)">
+                                    <div class="proj-details">
+                                        <div class="detail-container">
+                                            <div class="proj-title">Nike Lebron 20</div>
+                                            <div class="lang-used">HTML, SCSS, CSS, JavaScript, Bootstrap</div>
+                                            <div class="link">
+                                                Go to: <a href="https://webdev-act3.pages.dev/"
+                                                    target="_blank">https://webdev-act3.pages.dev/</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slide">
+                                <div class="project" style="background-image: url(https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/projs/act4.jpeg)">
+                                    <div class="proj-details">
+                                        <div class="detail-container">
+                                            <div class="proj-title">TV Shows</div>
+                                            <div class="lang-used">HTML, CSS, JavaScript, Bootstrap</div>
+                                            <div class="link">
+                                                Go to: <a href="https://webdev-act4.pages.dev/"
+                                                    target="_blank">https://webdev-act4.pages.dev/</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slide">
+                                <div class="project" style="background-image: url(https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/projs/comms1.jpeg)">
+                                    <div class="proj-details">
+                                        <div class="detail-container">
+                                            <div class="proj-title">Coastal Erosion</div>
+                                            <div class="lang-used">HTML, CSS, Javascript</div>
+                                            <div class="link">
+                                                Go to: <a href="https://coastal-erosion.pages.dev/"
+                                                    target="_blank">https://coastal-erosion.pages.dev/</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slide">
+                                <div class="project" style="background-image: url(https://raw.githubusercontent.com/bekkbekk/storage/main/midterms%20webdev/projs/gwa%20calcu.jpeg)">
+                                    <div class="proj-details">
+                                        <div class="detail-container">
+                                            <div class="proj-title">GWA Calculator</div>
+                                            <div class="lang-used">Kotlin, SQLite</div>
+                                            <div class="link">
+                                                Go to: <a href="https://play.google.com/store/apps/details?id=com.bekk.gwacalculator"
+                                                    target="_blank">https://play.google.com/store/apps/details?id=com.bekk.gwacalculator</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- slide images end -->
+
+                            <!-- automatic navigation start -->
+                            <div class="navigation-auto">
+                                <div class="auto-btn1"></div>
+                                <div class="auto-btn2"></div>
+                                <div class="auto-btn3"></div>
+                                <div class="auto-btn4"></div>
+                            </div>
+                            <!-- automatic navigation end -->
+                        </div>
+
+                        <!-- manual navigation start -->
+                        <div class="navigation-manual">
+                            <label for="radio1" class="manual-btn"></label>
+                            <label for="radio2" class="manual-btn"></label>
+                            <label for="radio3" class="manual-btn"></label>
+                            <label for="radio4" class="manual-btn"></label>
+                        </div>
+                        <!-- manual navigation end -->
+                    </div>
+                    <!-- image slider end -->
+                </div>
+            </div>
+        </section>
+
+        <!-- skills -->
+        <section id="skills" class="content-section">
+            <div class="container">
+                <div class="section-title" data-aos="zoom-in-up">Skills</div>
+            </div>
+        </section>
+
+        <!-- contact -->
+        <section id="contact" class="content-section">
+            <div class="container">
+                <div class="section-title" data-aos="zoom-in-up">Contact</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- footer -->
+    <footer>
+
+    </footer>
+
+    <!-- AOS -->
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>
